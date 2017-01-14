@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:23:54 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/12 18:20:30 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/13 00:09:55 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_piece	*ft_lstadd2(t_piece *first, t_piece *nnew)
 	t_piece *tmp;
 
 	tmp = NULL;
-	if (first == NULL)	
+	if (first == NULL)
 		return (nnew);
 	else
 	{
