@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 18:27:03 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 15:42:14 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 16:48:53 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,27 @@ static int		ft_check_binary_mask(size_t *area, size_t *add, int decal)/*Renvoie 
 		return (0);
 }
 
-static int		ft_check_limit(size_t *add, int limit, int decal)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
+static int		ft_check_limit_x(size_t *add, int limit, int decal)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
 {
 	int		lmtbit;
+
+	lmtbit = ft_pow(2, 31 - limit);// limit non inclus, barriere exterieure en binaire.
+	if ((add[0] & lmtbit || add[1] & lmtbit || add[2] & lmtbit || add[3] & lmtbit))
+		return (1);
+	return (0);
+} //besoin de placer la piece en haut a gauche pour lutiliser
+
+static int		ft_check_limit_y(size_t *add, int limit, int decal)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
+{
 	int		size; /*size of piece*/
 
 	size = 0;
-	lmtbit = ft_pow(2, 31 - limit);// limit non inclus, barriere exterieure en binaire.
 	while (add[size] & 4294967295)/*find height of add*/
 	{
 		size++;
 	}
-	if ((add[0] & lmtbit || add[1] & lmtbit || add[2] & lmtbit || add[3] & lmtbit) || 
-	(decal + size == limit))
-	{
-			return (1);
-	}
+	if ((decal + size == limit))
+		return (1);//trop  bas
 	return (0);
 } //besoin de placer la piece en haut a gauche pour lutiliser
 
@@ -53,20 +58,31 @@ size_t		*search_slot(size_t *area, size_t *add)
 {
 	int		limit;/*limite*/ // a donner dans la fonction
 	int		decal;/*decalage Y*/
+	int		nbx;//nombre dedecalage de la piece vers x.
 
 	decal = 0;
 	limit = 4;
+	nbx = 0;
 	while (ft_check_binary_mask(area, add, decal))
 	{
-		if (ft_check_limit(add, limit, decal))//et que decal + 3 < a limit alors decal ++
-			// si decal + 3 = limit et que ft_limit ok  alors limit  += 1 et decal = 0 
+		if (ft_check_limit_x(add, limit, decal))
 		{
+			add[0] <<= nbx;
+			add[1] <<= nbx;
+			add[2] <<= nbx;
+			add[3] <<= nbx;
 			decal++;
-			piece x = binaire - (limit - size piece)
-		}// faire une limit pour le bas, la piece ne prend pas forcement les 4 emplacement
+			nbx = 0;
+		}
+		if (ft_check_limit_y(add, limit, decal))//modif
+		{
+			decal = 0;
+			limit ++;
+		}
+		// faire une limit pour le bas, la piece ne prend pas forcement les 4 emplacement
 		// des 4 int. il ne faut pas se baser sur decal + 3,
 
-		// voir pour faire un test d' int utile de la piece au debut pour utileser juste 
+		// voir pour faire un test d' int utile de la piece au debut pour utiliser juste 
 		// les int utile, exemple avec un carre en haut a gauche, juste les 2 premiers int.
 		else
 		{
@@ -74,6 +90,7 @@ size_t		*search_slot(size_t *area, size_t *add)
 			add[1] >>= 1;
 			add[2] >>= 1;
 			add[3] >>= 1;
+			nbx++;
 		}
 	}
 	if (!(ft_check_binary_mask(area, add, decal)))
