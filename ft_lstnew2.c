@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 15:39:33 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/13 00:10:00 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/14 23:38:24 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 t_piece		*ft_lstnew2(size_t *tab, char c)
 {
+	printf("lstnew\n");
 	t_piece *new;
 	int i;
 

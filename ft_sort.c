@@ -6,15 +6,15 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 00:55:00 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/14 17:10:57 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/14 23:48:55 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdlib.h>
 
-// char		*ft_convertotetri(size_t bit, int limit_size)
+// char		*ft_conver(size_t bit, int limit_size)
 // {
-// 	printf("ft_convertotetri\n");
 // 	int				power;
 // 	int				i;
 // 	char			*tertis;
@@ -22,7 +22,9 @@
 // 	static char		letter = 'A';
 
 // 	zone = 32;
+// 	printf("1\n");
 // 	tertis = (char *)malloc(zone);
+// 	printf("2\n");
 // 	tertis[zone - 1] = '\0';
 // 	i = 0;
 // 	power = 31;
@@ -66,16 +68,14 @@ size_t		*ft_piece(int *t)
 			tshift++;
 			test -= 4;
 		}
-		//printf("%s\n", ft_convertotetri(tab[tshift], 4));
 		tab[tshift] += ft_pow(2, 31 - (t[i] - (4 * tshift)));
-		//printf("%s\n\n", ft_convertotetri(tab[tshift], 4));
 		i++;
 		tshift = 0;
 	}
-	// printf("1\n");
-	// printf("%s\n\n%s\n\n%s\n\n%s\n\n", ft_convertotetri(tab[0], 4),
-	// ft_convertotetri(tab[1], 4), ft_convertotetri(tab[2], 4), ft_convertotetri(tab[3], 4));
-	// printf("conver fini\n");
+	// printf("%zi\n", ft_conver(tab[0], 4));
+	// printf("%zi\n", ft_conver(tab[1], 4));
+	// printf("%zi\n", ft_conver(tab[2], 4));
+	// printf("%zi\n", ft_conver(tab[3], 4));
 	return (tab);
 }
 
@@ -108,11 +108,6 @@ t_piece		*ft_sort(char *s, t_piece *alst)// ajouter alst a main
 		t[0] + 4 == t[2]) + (t[0] + 1 == t[3] || t[0] + 4 == t[3]) + (t[1]
 		+ 1 == t[2] || t[1] + 4 == t[2]) + (t[1] + 1 == t[3] || t[1] + 4
 		== t[3]) + (t[2] + 1 == t[3] || t[2] + 4 == t[3]);
-	printf("check = %d\n", check);
-	// if (ft_piece(t))
-	// 	printf("piece OK\n");// SEGFAULT ICI !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// if (ft_add_piece_to_list(ft_piece(t), alst, piece))
-	// 	printf("add ok \n");
 	if (check == 3 || check == 4)
 	{
 		printf("sort 3 ou 4\n");

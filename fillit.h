@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 19:13:17 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/14 17:10:54 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/14 23:38:25 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ t_piece			*ft_sort(char *s, t_piece *alst);
 size_t			*ft_piece(int *t);
 size_t			ft_pow(size_t n, int power);
 int				ft_index(char *s, int nb, int i);
+char			**ft_itoa_piece(t_piece *piece, size_t limit);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/14 17:10:53 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 15:20:49 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	main(int argc, char **argv)
 	char **tab;
 	t_piece		*alst;
 	size_t		*copy;
+	//t_piece		*tmp;
+
 
 	if (!(copy = (size_t*)malloc(13)))
 		return (0);
@@ -67,22 +69,22 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	while (tab[i])
+	while (i < 4)
 	{
-		alst = ft_sort(tab[i], alst);
+		ft_sort(tab[i], alst);
 		printf("OK\n");
 		i++;
 	}
-	copy[0] = alst->tab[0];
-	copy[1] = alst->tab[1];
-	copy[2] = alst->tab[2];
-	copy[3] = alst->tab[3];
-	tmp = alst->next;
-	while (tmp)
-	{
-		copy = search_slot(copy, tmp);
-		tmp = tmp->next;
-	}
-	print (copy);
+	// copy[0] = alst->tab[0];
+	// copy[1] = alst->tab[1];
+	// copy[2] = alst->tab[2];
+	// copy[3] = alst->tab[3];
+	// tmp = alst->next;
+	// while (tmp)
+	// {
+	// 	copy = search_slot(copy, tmp->tab);
+	// 	tmp = tmp->next;
+	// }
+	//ft_itoa_piece(copy, limit); // trouver la limite de copy et la revoyer dans la fonction.
 	return (0);
 }
