@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 18:27:03 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 16:48:53 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 19:08:22 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int		ft_check_limit_y(size_t *add, int limit, int decal)/*Si la piece dep
 
 size_t		*search_slot(size_t *area, size_t *add)
 {
-	int		limit;/*limite*/ // a donner dans la fonction
+	int		limit;/*limite*/ // a donner dans la fonction, elle sera la racine carre du nombre de piece recu * 6.
 	int		decal;/*decalage Y*/
 	int		nbx;//nombre dedecalage de la piece vers x.
 
@@ -79,9 +79,6 @@ size_t		*search_slot(size_t *area, size_t *add)
 			decal = 0;
 			limit ++;
 		}
-		// faire une limit pour le bas, la piece ne prend pas forcement les 4 emplacement
-		// des 4 int. il ne faut pas se baser sur decal + 3,
-
 		// voir pour faire un test d' int utile de la piece au debut pour utiliser juste 
 		// les int utile, exemple avec un carre en haut a gauche, juste les 2 premiers int.
 		else
@@ -93,7 +90,5 @@ size_t		*search_slot(size_t *area, size_t *add)
 			nbx++;
 		}
 	}
-	if (!(ft_check_binary_mask(area, add, decal)))
-		return (ft_add_piece(area, add, decal));
-	return (0);// quoi si faux??
+	return (ft_add_piece(area, add, decal));
 }

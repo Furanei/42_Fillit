@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_top_left.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 19:08:16 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/01/16 16:56:27 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/01/16 18:54:24 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *piece, t_piece *first)
+size_t		*ft_top_left(size_t *tab)
 {
-	static char c = 'A';
+	int		i;
+	int		up;
+	size_t	fst;
 
-	piece = ft_lstnew2(tab, c);
-	first = ft_lstadd2(first, piece);
-	c++;
-	return (first);
+	fst = ft_pow(2, 31);
+	i = 0;
+	up = 0;
+	while (tab[i] == 0)/*x*/
+	{
+		up++;
+		i++;
+	}
+	while (up--)
+	{
+		tab[0] = tab[1];
+		tab[1] = tab[2];
+		tab[2] = tab[3];
+		tab[3] = tab[0];
+	}
+	while (!(tab[0] & fst || tab[1] & fst || tab[2] & fst || tab[3] & fst))/*y*/
+	{
+		tab[0] <<= 1;
+		tab[1] <<= 1;
+		tab[2] <<= 1;
+		tab[3] <<= 1;
+	}
+	return (tab);
 }

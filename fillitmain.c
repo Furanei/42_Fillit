@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/16 15:20:49 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 19:08:21 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,17 @@ int	main(int argc, char **argv)
 	char buffer[21];
 	char **tab;
 	t_piece		*alst;
-	size_t		*copy;
+	t_piece		*piece;
+
+	//size_t		*copy;
 	//t_piece		*tmp;
 
 
-	if (!(copy = (size_t*)malloc(13)))
-		return (0);
+	/*if (!(copy = (size_t*)malloc(13)))
+		return (0);*/
 	// init a 0
 	alst = NULL;
+	piece = NULL;
 	i = 0;
 	if (argc != 2)
 		return (0);
@@ -69,12 +72,13 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	i = 0;
-	while (i < 4)
+	while (tab[i])
 	{
-		ft_sort(tab[i], alst);
+		alst = ft_sort(tab[i], piece, alst);
 		printf("OK\n");
 		i++;
 	}
+
 	// copy[0] = alst->tab[0];
 	// copy[1] = alst->tab[1];
 	// copy[2] = alst->tab[2];

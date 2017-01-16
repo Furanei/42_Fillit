@@ -6,39 +6,11 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 21:42:53 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/14 23:38:31 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 19:07:21 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-// char		*ft_itoa_piece(size_t bit, int limit_size)
-// {
-// 	int				power;
-// 	int				i;
-// 	char			*tertis;
-// 	int				zone;
-// 	static char		letter = 'A';
-
-// 	zone = 32;
-// 	tertis = (char *)malloc(zone);
-// 	tertis[zone - 1] = '\0';
-// 	i = 0;
-// 	power = 31;
-// 	while (bit > 0 || i < (zone - 1))
-// 	{
-// 		tertis[i] = '.';
-// 		if (bit & (ft_pow(2, power)))
-// 		{
-// 			bit -= ft_pow(2, power);
-// 			tertis[i] = letter;
-// 			letter++;
-// 		}
-// 		i++;
-// 		power--;
-// 	}
-// 	return (tertis);
-// }
 
 char	**ft_itoa_piece(t_piece *piece, size_t limit)
 {

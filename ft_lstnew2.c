@@ -6,11 +6,10 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/19 15:39:33 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/14 23:38:24 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 19:08:17 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
 t_piece		*ft_lstnew2(size_t *tab, char c)
