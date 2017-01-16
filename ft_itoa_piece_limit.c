@@ -1,44 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_top_left.c                                      :+:      :+:    :+:   */
+/*   ft_itoa_piece_limit.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/16 16:56:27 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 23:38:23 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/01/16 23:01:41 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/01/16 23:38:19 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t		*ft_top_left(size_t *tab)
+int			ft_itoa_piece_limit(size_t *t)
 {
-	int		i;
-	int		up;
-	size_t	fst;
+	printf("itoa limit\n");
+	int i;
+	int	again;
+	int power;
+	int n;
 
-	fst = ft_pow(2, 31);
 	i = 0;
-	up = 0;
-	while (tab[i] == 0)/*x*/
+	again = 1;
+	power = 31;
+	while (again)
 	{
-		up++;
-		i++;
+		n = ft_pow(2, power);
+		if (t[0] & n || t[1] & n || t[2] & n || t[3] & n)
+			i++;
+		else
+			again = 0;
+		power--;
 	}
-	while (up--)
-	{
-		tab[0] = tab[1];
-		tab[1] = tab[2];
-		tab[2] = tab[3];
-		tab[3] = tab[0];
-	}
-	while (!(tab[0] & fst || tab[1] & fst || tab[2] & fst || tab[3] & fst))/*y*/
-	{
-		tab[0] <<= 1;
-		tab[1] <<= 1;
-		tab[2] <<= 1;
-		tab[3] <<= 1;
-	}
-	return (tab);
+	return (i);
 }

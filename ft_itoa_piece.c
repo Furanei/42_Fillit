@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 21:42:53 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 19:07:21 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 23:38:21 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 char	**ft_itoa_piece(t_piece *piece, size_t limit)
 {
+	printf("itoa\n");
 	size_t		nb_line; // hauteur du contenu de piece
 	int		i;
 	char	**dest;
 	int		power;
 	size_t	tmp;
-	int		a;
+	size_t		a;
 
 	nb_line = 0;
 	i = 0;

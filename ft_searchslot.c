@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 18:27:03 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 19:08:22 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 23:44:11 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int		ft_check_binary_mask(size_t *area, size_t *add, int decal)/*Renvoie 
 		return (0);
 }
 
-static int		ft_check_limit_x(size_t *add, int limit, int decal)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
+static int		ft_check_limit_x(size_t *add, int limit)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
 {
 	int		lmtbit;
 
@@ -56,6 +56,7 @@ static int		ft_check_limit_y(size_t *add, int limit, int decal)/*Si la piece dep
 
 size_t		*search_slot(size_t *area, size_t *add)
 {
+	printf("search_slot\n");
 	int		limit;/*limite*/ // a donner dans la fonction, elle sera la racine carre du nombre de piece recu * 6.
 	int		decal;/*decalage Y*/
 	int		nbx;//nombre dedecalage de la piece vers x.
@@ -65,7 +66,7 @@ size_t		*search_slot(size_t *area, size_t *add)
 	nbx = 0;
 	while (ft_check_binary_mask(area, add, decal))
 	{
-		if (ft_check_limit_x(add, limit, decal))
+		if (ft_check_limit_x(add, limit))
 		{
 			add[0] <<= nbx;
 			add[1] <<= nbx;
@@ -90,5 +91,6 @@ size_t		*search_slot(size_t *area, size_t *add)
 			nbx++;
 		}
 	}
+	printf("search_slot end\n");
 	return (ft_add_piece(area, add, decal));
 }
