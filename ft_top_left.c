@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:56:27 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 23:38:23 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/17 22:14:19 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ size_t		*ft_top_left(size_t *tab)
 	int		i;
 	int		up;
 	size_t	fst;
+	size_t	tmp;
 
 	fst = ft_pow(2, 31);
 	i = 0;
@@ -28,10 +29,11 @@ size_t		*ft_top_left(size_t *tab)
 	}
 	while (up--)
 	{
+		tmp = tab[0];
 		tab[0] = tab[1];
 		tab[1] = tab[2];
 		tab[2] = tab[3];
-		tab[3] = tab[0];
+		tab[3] = tmp;
 	}
 	while (!(tab[0] & fst || tab[1] & fst || tab[2] & fst || tab[3] & fst))/*y*/
 	{

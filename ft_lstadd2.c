@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:23:54 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/16 19:07:07 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/17 22:06:01 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <stdio.h>
 t_piece	*ft_lstadd2(t_piece *first, t_piece *nnew)
 {
-	printf("lstadd\n");
 	t_piece *tmp;
 
 	tmp = NULL;

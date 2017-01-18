@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/16 23:45:55 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/16 23:59:01 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int argc, char **argv)
 	t_piece		*alst;
 	t_piece		*piece;
 	size_t		*copy;
-	t_piece		*tmp;
+	// t_piece		*tmp;
 	char	**total;
 	int 	j;
 
@@ -81,20 +81,25 @@ int	main(int argc, char **argv)
 		printf("OK\n");
 		i++;
 	}
+	printf("1-%s\n2-%s\n3-%s\n4-%s\n", ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0], ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0],
+		ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0],ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0]);
 
-	copy[0] = alst->tab[0];
-	copy[1] = alst->tab[1];
-	copy[2] = alst->tab[2];
-	copy[3] = alst->tab[3];
-	tmp = alst->next;
-	printf("copy end\n");// verifier le contenu de tmp  et de copy
-	while (j--)// segfault 
-	{
-		printf("enter\n");
-		copy = search_slot(copy, tmp->tab);// retour de tableau d'int, pas de chat vec lettre, il faut trouver un moyen;
-		tmp = tmp->next;
-	}
-	total = ft_itoa_piece(tmp, ft_itoa_piece_limit(tmp->tab)); // trouver la limite de copy et la revoyer dans la fonction.
+					//verifier la sortie de ft_piece, peut etre que la sortie n'est pas bonne 
+					// et verifier ft_itoa_Piece
+
+	// copy[0] = alst->tab[0];
+	// copy[1] = alst->tab[1];
+	// copy[2] = alst->tab[2];
+	// copy[3] = alst->tab[3];
+	// tmp = alst->next;
+	// printf("copy end\n");// verifier le contenu de tmp  et de copy
+	// while (j--)// segfault 
+	// {
+	// 	printf("enter\n");
+	// 	copy = search_slot(copy, tmp->tab);// retour de tableau d'int, pas de chat vec lettre, il faut trouver un moyen;
+	// 	tmp = tmp->next;
+	// }
+	total = ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab)); // trouver la limite de copy et la revoyer dans la fonction.
 	printf("%s\n", total[0]);
 	printf("%s\n", total[0]);
 	printf("%s\n", total[0]);

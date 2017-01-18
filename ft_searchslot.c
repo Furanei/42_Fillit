@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 18:27:03 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 23:44:11 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/18 17:47:23 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,9 @@ size_t		*search_slot(size_t *area, size_t *add)
 	decal = 0;
 	limit = 4;
 	nbx = 0;
-	while (ft_check_binary_mask(area, add, decal))
+	while (ft_check_binary_mask(area, add, decal)
+		|| ft_check_limit_x(add, limit)
+		|| ft_check_limit_y(add, limit, decal))
 	{
 		if (ft_check_limit_x(add, limit))
 		{
