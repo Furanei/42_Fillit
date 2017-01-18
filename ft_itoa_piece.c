@@ -6,13 +6,13 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 21:42:53 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/16 23:56:01 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:45:43 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_itoa_piece(t_piece *piece, size_t limit)
+char	**ft_itoa_piece(t_piece *piece)
 {
 	printf("itoa\n");
 	size_t		nb_line; // hauteur du contenu de piece
@@ -21,6 +21,7 @@ char	**ft_itoa_piece(t_piece *piece, size_t limit)
 	int		power;
 	size_t	tmp;
 	size_t		a;
+	size_t		limit;
 
 	nb_line = 0;
 	i = 0;
@@ -28,6 +29,7 @@ char	**ft_itoa_piece(t_piece *piece, size_t limit)
 	{
 		nb_line++;
 	}
+	limit = ft_itoa_piece_limit(piece->tab, nb_line);
 	if (!(dest = (char **)ft_memalloc(nb_line + 1)))
 		return (NULL);
 	while(nb_line)
