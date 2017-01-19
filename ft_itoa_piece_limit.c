@@ -6,13 +6,13 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 23:01:41 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/18 18:45:21 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/18 19:00:25 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_test(size_t *t, size_t nb_line, size_t n)
+int			ft_test(size_t *t, size_t nb_line, size_t n)// aide la fonction ft_itoa_piece limit, fait un test avec une limite n pour voir si elle chevauche la piece
 {
 	size_t	count;
 
@@ -27,7 +27,7 @@ int		ft_test(size_t *t, size_t nb_line, size_t n)
 	return 0;
 }
 
-size_t			ft_itoa_piece_limit(size_t *t, size_t nb_line)
+size_t		ft_itoa_piece_limit(size_t *t, size_t nb_line)// trouve la largeur de de la piece
 {
 	int i;
 	int	again;
@@ -40,11 +40,11 @@ size_t			ft_itoa_piece_limit(size_t *t, size_t nb_line)
 	while (again)
 	{
 		n = ft_pow(2, power);
-		if (ft_test(t, nb_line, n))
+		if (ft_test(t, nb_line, n))// si ft_test = 1 alors tester avec un nouveau n jusqu'a trouver 0
 			i++;
 		else
 			again = 0;
 		power--;
 	}
-	return (i);
+	return (i);// retourne le nombre de ft_test reussi qui donne la largeur de la piece
 }

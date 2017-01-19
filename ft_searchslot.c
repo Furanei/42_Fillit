@@ -6,13 +6,13 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 18:27:03 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/18 17:47:23 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/19 01:39:00 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t		*ft_add_piece(size_t *area, size_t *add, int decal)/*ajoute une piece au bloc*/
+size_t		*ft_add_piece(size_t *area, size_t *add, int decal)/*renvoit la somme de area et de add */
 {
 	area[decal + 0] += add[0];
 	area[decal + 1] += add[1];
@@ -21,7 +21,7 @@ size_t		*ft_add_piece(size_t *area, size_t *add, int decal)/*ajoute une piece au
 	return ((size_t*)area);
 }
 
-static int		ft_check_binary_mask(size_t *area, size_t *add, int decal)/*Renvoie 1 si les pieces se chevauchent, sinon 0.*/
+static int		ft_check_binary_mask(size_t *area, size_t *add, int decal)/*verifie si les deux pieces se chevauchent.*/
 {/*fonction verifie c'est OK*/
 	if (area[decal + 0] & add[0] || area[decal + 1] & add[1]
 	 || area[decal + 2] & add[2] || area[decal + 3] & add[3])
@@ -30,7 +30,7 @@ static int		ft_check_binary_mask(size_t *area, size_t *add, int decal)/*Renvoie 
 		return (0);
 }
 
-static int		ft_check_limit_x(size_t *add, int limit)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
+static int		ft_check_limit_x(size_t *add, int limit)/*verifie si la piece ne depasse pas la limite x */
 {
 	int		lmtbit;
 
@@ -40,7 +40,7 @@ static int		ft_check_limit_x(size_t *add, int limit)/*Si la piece depasse la lim
 	return (0);
 } //besoin de placer la piece en haut a gauche pour lutiliser
 
-static int		ft_check_limit_y(size_t *add, int limit, int decal)/*Si la piece depasse la limite 'i' revoie 1, sinon 0.*/
+static int		ft_check_limit_y(size_t *add, int limit, int decal)/* Verifie si la piece ne depaase pas la limite Y .*/
 {
 	int		size; /*size of piece*/
 
@@ -50,21 +50,21 @@ static int		ft_check_limit_y(size_t *add, int limit, int decal)/*Si la piece dep
 		size++;
 	}
 	if ((decal + size == limit))
-		return (1);//trop  bas
+		return (1);
 	return (0);
-} //besoin de placer la piece en haut a gauche pour lutiliser
+}
 
-size_t		*search_slot(size_t *area, size_t *add)
+size_t		*search_slot(size_t *area, size_t *add) // trouve l'emplacement de la piece add dans area, area peut etre un piece ou la somme de plusiers pieces.
 {
 	printf("search_slot\n");
-	int		limit;/*limite*/ // a donner dans la fonction, elle sera la racine carre du nombre de piece recu * 6.
-	int		decal;/*decalage Y*/
-	int		nbx;//nombre dedecalage de la piece vers x.
+	int		limit;/*limite a ne pas depasser*/
+	int		decal;/*decalage en Y*/
+	int		nbx;//nombre dedecalage effectues de la piece vers x.
 
 	decal = 0;
 	limit = 4;
 	nbx = 0;
-	while (ft_check_binary_mask(area, add, decal)
+	while (ft_check_binary_mask(area, add, decal)// 
 		|| ft_check_limit_x(add, limit)
 		|| ft_check_limit_y(add, limit, decal))
 	{
@@ -77,7 +77,7 @@ size_t		*search_slot(size_t *area, size_t *add)
 			decal++;
 			nbx = 0;
 		}
-		if (ft_check_limit_y(add, limit, decal))//modif
+		if (ft_check_limit_y(add, limit, decal))
 		{
 			decal = 0;
 			limit ++;
@@ -93,6 +93,5 @@ size_t		*search_slot(size_t *area, size_t *add)
 			nbx++;
 		}
 	}
-	printf("search_slot end\n");
 	return (ft_add_piece(area, add, decal));
 }

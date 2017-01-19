@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/16 23:59:01 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/18 19:03:33 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ int	main(int argc, char **argv)
 	t_piece		*piece;
 	size_t		*copy;
 	// t_piece		*tmp;
-	char	**total;
 	int 	j;
-
-
-
+	
 	if(!(copy = (size_t*)malloc(sizeof(size_t) * 13)))
 		return (0);
 	// init a 0
@@ -78,11 +75,10 @@ int	main(int argc, char **argv)
 	while (tab[i])
 	{
 		alst = ft_sort(tab[i], piece, alst);
-		printf("OK\n");
 		i++;
 	}
-	printf("1-%s\n2-%s\n3-%s\n4-%s\n", ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0], ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0],
-		ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0],ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab))[0]);
+	printf("1-%s\n2-%s\n3-%s\n4-%s\n", ft_itoa_piece(alst)[0], ft_itoa_piece(alst)[1],
+		ft_itoa_piece(alst)[2],ft_itoa_piece(alst)[3]);
 
 					//verifier la sortie de ft_piece, peut etre que la sortie n'est pas bonne 
 					// et verifier ft_itoa_Piece
@@ -99,10 +95,5 @@ int	main(int argc, char **argv)
 	// 	copy = search_slot(copy, tmp->tab);// retour de tableau d'int, pas de chat vec lettre, il faut trouver un moyen;
 	// 	tmp = tmp->next;
 	// }
-	total = ft_itoa_piece(alst, ft_itoa_piece_limit(alst->tab)); // trouver la limite de copy et la revoyer dans la fonction.
-	printf("%s\n", total[0]);
-	printf("%s\n", total[0]);
-	printf("%s\n", total[0]);
-	
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 16:56:27 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/17 22:14:19 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/19 01:28:52 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t		*ft_top_left(size_t *tab)
+size_t		*ft_top_left(size_t *tab)// place la piece en haut a gauche 
 {
 	int		i;
 	int		up;

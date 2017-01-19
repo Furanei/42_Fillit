@@ -6,15 +6,15 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 00:55:00 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/18 17:38:45 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/18 18:05:33 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t		*ft_piece(int *t)//test ici !!!!!
+size_t		*ft_piece(int *t)// recoit les possitions de chaque # dans un tableau d'int, puis creer la piece dans un size_t *
 {
-	printf("piece\n");
+	
 	size_t	i;
 	size_t	tshift;
 	size_t	test;
@@ -24,7 +24,7 @@ size_t		*ft_piece(int *t)//test ici !!!!!
 		return (0);
 	i = 0;
 	tshift = 0;
-	while (i < 4)/* voir pour creer fonction creation tableau + init 0 dans la lib*/
+	while (i < 4)
 	{
 		tab[i++] = 0;
 	}
@@ -41,13 +41,10 @@ size_t		*ft_piece(int *t)//test ici !!!!!
 		i++;
 		tshift = 0;
 	}
-	printf("#\n%zi\n%zi\n%zi\n%zi\n#", tab[0], tab[1], tab[2], tab[3]);
-	tab = ft_top_left(tab);
-	printf("T\n%zi\n%zi\n%zi\n%zi\nT", tab[0], tab[1], tab[2], tab[3]);
-	return (tab);
+	return (ft_top_left(tab));// passe le size_t * dans ft_top_left pour replacer la piece avant de la return.
 }
 
-int		ft_index(char *s, int nb, int i)// resoudre le probleme
+int		ft_index(char *s, int nb, int i)// trouve la position de chaque #, n est le nombre de # a ignoner avant de rendre le resultat. 
 {
 	while (s[i] != '\0')
 	{
@@ -62,27 +59,23 @@ int		ft_index(char *s, int nb, int i)// resoudre le probleme
 	return (0);
 }
 
-t_piece		*ft_sort(char *s, t_piece *piece, t_piece *first)// ajouter alst a main
+t_piece		*ft_sort(char *s, t_piece *piece, t_piece *first)// verifie si la piece est valide avec les coordonnees trouvees avec ft_index, puis l'envoi dans ft_piece
 {
-	printf("sort\n");
-	int 		check;
+		int 		check;
 	int			t[4];
 
 	t[0] = ft_index(s, 0, 0);
 	t[1] = ft_index(s, 1, 0);
 	t[2] = ft_index(s, 2, 0);
 	t[3] = ft_index(s, 3, 0);
-	printf("___tab___\n%d\n%d\n%d\n%d\n______\n", t[0], t[1], t[2], t[3]);
 	check = (t[0] + 1 == t[1] || t[0] + 4 == t[1]) + (t[0] + 1 == t[2] ||
 		t[0] + 4 == t[2]) + (t[0] + 1 == t[3] || t[0] + 4 == t[3]) + (t[1]
 		+ 1 == t[2] || t[1] + 4 == t[2]) + (t[1] + 1 == t[3] || t[1] + 4
 		== t[3]) + (t[2] + 1 == t[3] || t[2] + 4 == t[3]);
-	printf("%d\n", check);
 	if (check == 3 || check == 4)
 	{
-		return ((t_piece *)ft_add_piece_to_list(ft_piece(t), first, piece)); // probleme de segfault a la sortie de ft_piece
+		return ((t_piece *)ft_add_piece_to_list(ft_piece(t), first, piece));
 	}
-	printf("sort --> 0\n");
 	return (0);
 }
 
