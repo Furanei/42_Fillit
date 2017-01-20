@@ -15,6 +15,8 @@
 
 # include "libft/libft.h"
 # include "fillit.h"
+# include <stdio.h>
+# include <fcntl.h>
 
 typedef struct		s_piece
 {
@@ -23,6 +25,7 @@ typedef struct		s_piece
 	struct 			s_piece *next;
 }					t_piece;
 
+char			**ft_read_and_clean(int argc, char **argv);
 int				*ft_is_valid(char *s);
 size_t			*ft_atoui_piece(int *t);
 size_t			ft_pow(size_t n, int power);

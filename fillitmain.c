@@ -12,37 +12,13 @@
 
 #include "fillit.h"
 
-char	*ft_clean(char *str, char *buffer)
-{
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	str = (char *)malloc(sizeof(char) * 17);
-	if (!str)
-		return (NULL);
-	while (i < 16)
-	{
-		if (i > 0 && (i % 4) == 0)
-			j++;
-		str[i] = buffer[i + j];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
 int	main(int argc, char **argv)
 {
-	int fd;
-	int i;
-	char buffer[21];
 	char **tab;
 	t_piece		*alst;
 	t_piece		*piece;
+	int 		i;
 	size_t		*copy;
-	int 	j;
 	int			*tab_valid;
 	size_t		*tab_size_t;
 
@@ -55,27 +31,7 @@ int	main(int argc, char **argv)
 		return (0);
 	alst = NULL;
 	piece = NULL;
-	i = 0;
-	if (argc != 2)
-		return (0);
-	ft_memset(buffer, ' ', 21);
-	fd = open(argv[1], O_RDONLY);
-	while (read(fd, buffer, 21) != 0)
-		i++;
-	j = i;
-	close(fd);
-	tab = (char**)malloc(sizeof(char*) * i + 1);
-	if (!tab)
-			return (0);
-		tab[i] = 0;
-	fd = open(argv[1], O_RDONLY);
-	i = 0;
-	while (read(fd, buffer, 21) != 0)
-	{
-		tab[i] = ft_clean(tab[i], buffer);
-		i++;
-
-	}
+	tab = ft_read_and_clean(argc, argv);
 	i = 0;
 	while (tab[i])
 	{
