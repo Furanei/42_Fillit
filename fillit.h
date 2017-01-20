@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 19:13:17 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/20 15:33:56 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/20 18:37:35 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ t_piece			*ft_lstadd2(t_piece *first, t_piece *nnew);
 size_t			*search_slot(size_t *area, size_t *add);
 char			**ft_itoa_piece(t_piece *piece);
 size_t			ft_itoa_piece_limit(size_t *t, size_t nb_line);
+char			**ft_tpiece_to_char(t_piece *piece);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/20 17:01:06 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/20 18:44:21 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,8 @@ int	main(int argc, char **argv)
 	printf("---------XXXXXXXXXXXXXX--------\n");
 	while (alst != NULL)
 	{
-		while (i < 4 )
-		{
-		printf("%zi\n", alst->tab[i++]);
-		}
-		i=0;
-		printf("\n");
+		ft_tpiece_to_char(alst);
+		printf("\n1\n");
 		alst = alst->next;
 	}
 	// copy[0] = 
