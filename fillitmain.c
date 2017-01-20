@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:48:09 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/18 19:03:33 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/20 03:29:44 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(int argc, char **argv)
 	size_t		*copy;
 	// t_piece		*tmp;
 	int 	j;
+	int			*tab_valid;
+	size_t		*tab_size_t;
 	
 	if(!(copy = (size_t*)malloc(sizeof(size_t) * 13)))
 		return (0);
@@ -53,11 +55,12 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (argc != 2)
 		return (0);
-	void				*ft_memset(void *s, int c, size_t n);
 	ft_memset(buffer, ' ', 21);
 	fd = open(argv[1], O_RDONLY);
 	while (read(fd, buffer, 21) != 0)
+	{
 		i++;
+	}// probleme ici !!!!!!!!!!!!!!!!!!!!!! je sais pas ou mais l'enregistrement de tab est parfois de 5 au lieu de 6
 	j = i;
 	close(fd);
 	tab = (char**)malloc(sizeof(char*) * i + 1);
@@ -70,15 +73,22 @@ int	main(int argc, char **argv)
 	{
 		tab[i] = ft_clean(tab[i], buffer);
 		i++;
+
 	}
 	i = 0;
 	while (tab[i])
 	{
-		alst = ft_sort(tab[i], piece, alst);
+		printf("<\n");
+		if ((tab_valid = ft_is_valid(tab[i])) == 0)
+		{
+			write(1, "error\n", 6);
+			return (0);
+		}
+		tab_size_t = ft_atoui_piece(tab_valid);
+		alst = ft_add_piece_to_list(tab_size_t, piece, alst);
+		//printf("%s\n%zi-%zi-%zi-%zi\n", tab[i], piece->tab[0], piece->tab[1], piece->tab[2], piece->tab[3]);
 		i++;
 	}
-	printf("1-%s\n2-%s\n3-%s\n4-%s\n", ft_itoa_piece(alst)[0], ft_itoa_piece(alst)[1],
-		ft_itoa_piece(alst)[2],ft_itoa_piece(alst)[3]);
 
 					//verifier la sortie de ft_piece, peut etre que la sortie n'est pas bonne 
 					// et verifier ft_itoa_Piece

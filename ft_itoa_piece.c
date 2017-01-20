@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/14 21:42:53 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/18 19:07:52 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/19 02:09:07 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_itoa_piece(t_piece *piece)// transforme la piece de binaire a char*
 		power = 31; /* on remet power a 0 pour un nouveau char*. */ 
 		a = 0; /*on remet l'index 'a' a 0 pour un nouveau char*. */
 		tmp = piece->tab[i];// int en cours de transformation
-		printf("%zi\n", piece->tab[i]);
+		//printf("%zi\n", piece->tab[i]);
 		if (!(dest[i] = (char*)ft_memalloc(limit + 1)))
 			return (NULL);
 		while(a < limit)
