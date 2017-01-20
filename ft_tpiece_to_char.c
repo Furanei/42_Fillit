@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew2.c                                       :+:      :+:    :+:   */
+/*   ft_tpiece_to_char.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/19 15:39:33 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/20 15:34:47 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/01/20 16:26:39 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/01/20 16:51:09 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece		*ft_lstnew2(size_t *t, char c)
+char		**ft_tpiece_to_char(t_piece *piece)
 {
-	t_piece *new;
-	int i;
+	char	**dest;
 
-	i = 0;
-	new = NULL;
-	new = (t_piece*)malloc(sizeof(t_piece));
-	if (!new)
-		return (NULL);
-	new->letter = c;
-	new->next = NULL;
-	while (i < 4)
-	{
-		new->tab[i] = t[i];
-		printf("%zi ---> ", t[i]);
-		printf("%zi\n", new->tab[i]);
-		i++;
-	}
-	printf("%c\n", new->letter);
-	printf("-----------\n");
-	return (new);
+	if(!(dest = malloc(sizeof(char*) * 5)))
+		return (0);
+	dest[4] = 0;
+
+
+
+	if(!(dest[] = ft_memalloc(5)))
+		return(0);
+	dest[0] = 
+
+
+	return (dest);
 }
