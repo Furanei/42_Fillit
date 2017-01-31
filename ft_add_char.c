@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd2.c                                       :+:      :+:    :+:   */
+/*   ft_add_char.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 23:23:54 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/17 22:06:01 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/01/27 19:20:57 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/01/27 23:49:23 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
-
-#include <stdio.h>
-t_piece	*ft_lstadd2(t_piece *first, t_piece *nnew)
+char	**ft_add_char(char **map_char, t_piece *add)
 {
-	t_piece *tmp;
+	short		i;
+	short		j;
 
-	tmp = NULL;
-	if (first == NULL)
-		return (nnew);
-	else
+	i = 0;
+	j = 0;
+	while (i < add->size)
 	{
-		tmp = first;
-		while (tmp->next != NULL)
+		j = 0;
+		while (j < 4)
 		{
-			tmp = tmp->next;
+			if (add->chartab[i][j] != '.')
+				map_char[i + add->shift_y][j + add->shift_x] = add->chartab[i][j];
+			j++;
 		}
-		tmp->next = nnew;
-		return (first);
+		i++;
 	}
+	return (add->chartab);
 }

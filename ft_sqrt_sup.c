@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd2.c                                       :+:      :+:    :+:   */
+/*   ft_sqrt_sup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 23:23:54 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/17 22:06:01 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/01/25 17:39:52 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/01/25 18:31:43 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
-
-
-#include <stdio.h>
-t_piece	*ft_lstadd2(t_piece *first, t_piece *nnew)
+int	ft_sqrt_sup(int nb)
 {
-	t_piece *tmp;
+	int	i;
+	int comp;
 
-	tmp = NULL;
-	if (first == NULL)
-		return (nnew);
-	else
+	comp = 0;
+	i = 0;
+	while (nb > comp)
 	{
-		tmp = first;
-		while (tmp->next != NULL)
-		{
-			tmp = tmp->next;
-		}
-		tmp->next = nnew;
-		return (first);
+		i++;
+		comp = i * i;
+		if (nb == comp)
+			return (i);
 	}
+	return (i);
 }

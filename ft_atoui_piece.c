@@ -58,7 +58,7 @@ size_t		*ft_atoui_piece(int *t)/*take int* positions ---> return size_t* binary_
 	{	
 		if (i > 3 || j > 3)
 			return (0);
-		while (t[j] > 3)/*si la piece est sur plus d'une ligne, on soustrait 4 a sa position et on incremente l'index correspondant a la ligne dans le tableau */
+		while (t[j] > 3)
 		{
 			t[j] -= 4;
 			i++;
