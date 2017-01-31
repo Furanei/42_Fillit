@@ -30,5 +30,5 @@ char	**ft_add_char(char **map_char, t_piece *add)
 		}
 		i++;
 	}
-	return (add->chartab);
+	return (map_char);
 }

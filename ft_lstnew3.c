@@ -12,18 +12,19 @@
 
 #include "fillit.h"
 
-t_piece		*ft_lstnew2(size_t *t, char c)
+t_piece		*ft_lstnew3(t_piece *piece)
 {
 	t_piece *new;
 	int i;
+	int j;
 
 	i = 0;
 	new = NULL;
 	new = (t_piece*)malloc(sizeof(t_piece));
 	if (!new)
 		return (NULL);
-	new->letter = c;
-	new->next = NULL;
+	new->letter = piece->letter;
+	new->next = piece->next;
 	new->shift_x = 0;
 	new->shift_y = 0;
 	if (!(new->chartab = (char**)malloc(sizeof(char*) * 5)))
@@ -33,8 +34,14 @@ t_piece		*ft_lstnew2(size_t *t, char c)
 	{
 		if (!(new->chartab[i] = (char*)malloc(sizeof(char) * 5)))
 			return (0);
+		j = 0;
+		while (j < 4)
+		{
+			new->chartab[i][j] = piece->chartab[i][j];
+			j++;
+		}
 		new->chartab[i][4] = '\0';
-		new->tab[i] = t[i];
+		new->tab[i] = piece->tab[i];
 		i++;
 	}
 	return (new);
