@@ -25,8 +25,9 @@ t_piece		*ft_lstnew3(t_piece *piece)
 		return (NULL);
 	new->letter = piece->letter;
 	new->next = piece->next;
-	new->shift_x = 0;
-	new->shift_y = 0;
+	new->shift_x = piece->shift_x;
+	new->shift_y = piece->shift_y;
+	new->size = piece->size;
 	if (!(new->chartab = (char**)malloc(sizeof(char*) * 5)))
 		return (0);
 	new->chartab[4] = 0;

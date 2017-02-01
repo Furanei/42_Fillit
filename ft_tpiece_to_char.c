@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 16:26:39 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/01 14:35:40 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/27 23:51:31 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_piece		*ft_tpiece_to_char(t_piece *piece)
 {
-	printf("---ft_tpiece_to_char---\n");
+	printf("--ft_tpiece_to_char--\n");
 	int		i;
 	int		j;
 	int 	power;

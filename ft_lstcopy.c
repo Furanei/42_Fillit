@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstcopy.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/01 14:49:49 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/01 14:54:59 by mbriffau         ###   ########.fr       */
+/*   Created: 2016/11/19 15:39:33 by cyrmorin          #+#    #+#             */
+/*   Updated: 2017/01/25 01:13:41 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece		*ft_lstnew3(t_piece *piece)
+t_piece		*ft_lstcopy(t_piece *piece)
 {
 	t_piece *new;
 	int i;
 	int j;
 
- 	i = 0;
+	i = 0;
 	new = NULL;
 	new = (t_piece*)malloc(sizeof(t_piece));
 	if (!new)
 		return (NULL);
 	new->letter = piece->letter;
 	new->next = piece->next;
-	new->shift_x = 0;
-	new->shift_y = 0;
+	new->shift_x = piece->shift_x;
+	new->shift_y = piece->shift_y;
+	new->size = piece->size;
 	if (!(new->chartab = (char**)malloc(sizeof(char*) * 5)))
 		return (0);
 	new->chartab[4] = 0;

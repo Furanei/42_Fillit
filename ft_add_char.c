@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/27 19:20:57 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/01 14:38:19 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/01/27 23:49:23 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ char	**ft_add_char(char **map_char, t_piece *add)
 		}
 		i++;
 	}
-	return (add->chartab);
+	return (map_char);
 }

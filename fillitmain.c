@@ -14,50 +14,56 @@
 
 int	main(int argc, char **argv)
 {
-	// int fd;
 	int i;
-	// size_t k;
-	// char buffer[21];
+	int k;
+	int nb_piece;
 	char **tab;
-	// char **tab2;
+	char **tab2;
 	t_piece		*alst;
 	t_piece		*piece;
-	// size_t		*copy;
 	int			*tab_valid;
 	size_t		*tab_size_t;
-	char		**dest;
 
+	k = 0;
 	alst = NULL;
 	piece = NULL;
-	dest = NULL;
-	dest = ft_double_memalloc(4, 4);
+	//tmp = NULL;
 	i = 0;
-	tab = ft_read_and_clean(argc, argv);
+	tab = ft_read_and_clean(argc, argv, &nb_piece);
+	//lis le fichier d entree, memorise le nombre de piece dans nb_piece, et retourne un tableau de piece sous 
+	//la forme de string sans les \n
 	while (tab[i])
 	{
 		printf("<\n");
-		if ((tab_valid = ft_is_valid(tab[i])) == 0)
+		if ((tab_valid = ft_is_valid(tab[i])) == 0) // check la validite des piece, et renvoi erreur sur a sortie standard si pbm
 		{
 			write(2, "error\n", 6);
 			return (0);
 		}
-		tab_size_t = ft_atoui_piece(tab_valid);
-		alst = ft_add_piece_to_list(tab_size_t, piece, alst);
-		//printf("%s\n%zi-%zi-%zi-%zi\n", tab[i], piece->tab[0], piece->tab[1], piece->tab[2], piece->tab[3]);
+		tab_size_t = ft_atoui_piece(tab_valid); //transforme les pieces en binaire et les place le plus en haut et
+												// le plus a gauche possible de leur carre de 4 respectif
+		alst = ft_add_piece_to_list(tab_size_t, piece, alst); //cree une liste de piece avec leur proprietes.
 		i++;
 	}
 	i = 0;
 	printf("---------XXXXXXXXXXXXXX--------\n");
-	while (alst)
+	//*tmp = alst;
+	// while (alst)
+	// {
+	// 	alst = ft_tpiece_to_char(alst);
+	// 	i = 0;
+	// 	while (i < 4)
+	// 	{
+	// 		printf("%s\n", alst->chartab[i]);
+	// 		i++;
+	// 	}
+	// 	alst = alst->next;
+	// }
+	// alst = *tmp;
+	tab2 = ft_solver(alst, nb_piece);
+	while (tab2[k])
 	{
-		alst->chartab = ft_tpiece_to_char(alst->tab, alst->letter, dest);
-		i = 0;
-		while (i < 4)
-		{
-			printf("%s\n", alst->chartab[i]);
-			i++;
-		}
-		alst = alst->next;
+		printf("%s\n", tab2[k]);
+		k++;
 	}
-	ft_solver(alst, nb_piece);
 }

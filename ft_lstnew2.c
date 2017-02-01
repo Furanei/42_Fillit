@@ -24,7 +24,9 @@ t_piece		*ft_lstnew2(size_t *t, char c)
 		return (NULL);
 	new->letter = c;
 	new->next = NULL;
-	new->shift = 0;
+	new->shift_x = 0;
+	new->shift_y = 0;
+	new->size = 0;
 	if (!(new->chartab = (char**)malloc(sizeof(char*) * 5)))
 		return (0);
 	new->chartab[4] = 0;
@@ -34,12 +36,7 @@ t_piece		*ft_lstnew2(size_t *t, char c)
 			return (0);
 		new->chartab[i][4] = '\0';
 		new->tab[i] = t[i];
-		printf("%zi ---> ", t[i]);
-		printf("%zi\n", new->tab[i]);
 		i++;
 	}
-
-	printf("%c\n", new->letter);
-	printf("-----------\n");
 	return (new);
 }
