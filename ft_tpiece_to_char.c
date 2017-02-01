@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/20 16:26:39 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/27 23:51:31 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/02/01 14:35:40 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_piece		*ft_tpiece_to_char(t_piece *piece)
 {
-	printf("X________________X\n");
+	printf("---ft_tpiece_to_char---\n");
 	int		i;
 	int		j;
 	int 	power;
@@ -22,6 +22,10 @@ t_piece		*ft_tpiece_to_char(t_piece *piece)
 	power = 31;
 	j = 0;
 	i = 0;
+	piece->tab[0] <<= piece->shift_x;
+	piece->tab[1] <<= piece->shift_x;
+	piece->tab[2] <<= piece->shift_x;
+	piece->tab[3] <<= piece->shift_x;
 	while (i < 4) // i est normalement a 0
 	{
 		if (piece->tab[i] == 0)

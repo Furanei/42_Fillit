@@ -37,16 +37,16 @@ static char		**ft_solver_helper(size_t *binary_map, t_piece *new, char **map_cha
 	result = NULL;
 	pass = 0;
 	enter = 0;
-		printf("test1\n");   
 	if (new == NULL)
-	{	printf("test2\n");   
+	{
 		return (map_char);
-	}   
+	}
 	if (!(copy_binary_map = (size_t*)malloc(sizeof(size_t) * 13)))
 		return (0);
-	if (!(copy_new = ft_lstnew3(new)))
+	if (!(copy_new = (t_piece*)malloc(sizeof(t_piece))))
 		return (0);
-	copy_binary_map = binary_map;                                                                                                                                                                                                                                      
+	copy_binary_map = binary_map;                                                                                                                                                                                                                                           
+	copy_new = new;
 	while(copy_new != 0)
 	{
 		if(enter == 1)

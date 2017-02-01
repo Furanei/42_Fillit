@@ -16,29 +16,23 @@ int	main(int argc, char **argv)
 {
 	// int fd;
 	int i;
-	int k;
-	int nb_piece;
 	// size_t k;
 	// char buffer[21];
 	char **tab;
-	char **tab2;
 	// char **tab2;
 	t_piece		*alst;
 	t_piece		*piece;
-	//t_piece		**tmp;
 	// size_t		*copy;
 	int			*tab_valid;
 	size_t		*tab_size_t;
 	char		**dest;
 
-	k = 0;
 	alst = NULL;
 	piece = NULL;
 	dest = NULL;
-	//tmp = NULL;
 	dest = ft_double_memalloc(4, 4);
 	i = 0;
-	tab = ft_read_and_clean(argc, argv, &nb_piece);
+	tab = ft_read_and_clean(argc, argv);
 	while (tab[i])
 	{
 		printf("<\n");
@@ -54,23 +48,16 @@ int	main(int argc, char **argv)
 	}
 	i = 0;
 	printf("---------XXXXXXXXXXXXXX--------\n");
-	//*tmp = alst;
-	// while (alst)
-	// {
-	// 	alst = ft_tpiece_to_char(alst);
-	// 	i = 0;
-	// 	while (i < 4)
-	// 	{
-	// 		printf("%s\n", alst->chartab[i]);
-	// 		i++;
-	// 	}
-	// 	alst = alst->next;
-	// }
-	// alst = *tmp;
-	tab2 = ft_solver(alst, nb_piece);
-	while (tab2[k])
+	while (alst)
 	{
-		printf("%s\n", tab2[k]);
-		k++;
+		alst->chartab = ft_tpiece_to_char(alst->tab, alst->letter, dest);
+		i = 0;
+		while (i < 4)
+		{
+			printf("%s\n", alst->chartab[i]);
+			i++;
+		}
+		alst = alst->next;
 	}
+	ft_solver(alst, nb_piece);
 }

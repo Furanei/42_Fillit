@@ -6,7 +6,7 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 00:52:19 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/27 23:17:02 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/02/01 14:35:47 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		ft_check_limit_x(t_piece *add, int limit)/*verifie si la piece ne de
 
 static int		ft_check_limit_y(t_piece *add, int limit)/* Verifie si la piece ne depaase pas la limite Y .*/
 {
-	if ((add->shift_y + add->size == limit))
+	if ((add->shift_y + add->size >= limit))
 		return (1);
 	return (0);
 }
@@ -42,22 +42,20 @@ t_piece		*ft_search_binary_slot(size_t *binary_map, t_piece *add, int pass, int 
 	//nombre dedecalage effectues de la piece vers x.
  /*add->size of piece*/
 
-	add->shift_x = 0;
-	add->size = 0;
 	while (add->tab[add->size] & 4294967295)/*find height of add*/
 	{
-		add->size++;
+		add->size += 1;
 	}
 	if (pass > 0)
 	{
-		add->shift_x += pass;// fonction decalage
-		add->tab[1] >>= pass;
-		add->tab[2] >>= pass;
-		add->tab[3] >>= pass;
-		add->shift_x += pass;
+		add->tab[0] >>= 1;// fonction decalage
+		add->tab[1] >>= 1;
+		add->tab[2] >>= 1;
+		add->tab[3] >>= 1;
+		add->shift_x += 1;
 		pass = 0;
 	}
-	while (ft_check_binary_mask(binary_map, add)// 
+	while (ft_check_binary_mask(binary_map, add)
 		|| ft_check_limit_x(add, limit)
 		|| ft_check_limit_y(add, limit))
 	{
@@ -67,12 +65,10 @@ t_piece		*ft_search_binary_slot(size_t *binary_map, t_piece *add, int pass, int 
 			add->tab[1] <<= add->shift_x;
 			add->tab[2] <<= add->shift_x;
 			add->tab[3] <<= add->shift_x;
-			add->shift_y++;
+			add->shift_y += 1;
 			add->shift_x = 0;
-		}
-		if (ft_check_limit_y(add, limit))
-		{
-			return (0);
+			if (ft_check_limit_y(add, limit))
+				return (0);
 		}
 		// voir pour faire un test d' int utile de la piece au debut pour utiliser juste 
 		// les int utile, exemple avec un carre en haut a gauche, juste les 2 premiers int.
@@ -82,9 +78,8 @@ t_piece		*ft_search_binary_slot(size_t *binary_map, t_piece *add, int pass, int 
 			add->tab[1] >>= 1;
 			add->tab[2] >>= 1;
 			add->tab[3] >>= 1;
-			add->shift_x++;
+			add->shift_x += 1;
 		}
-	add->shift_x = add->shift_x;
 	}
 	return (add);
 }
