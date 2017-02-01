@@ -33,6 +33,7 @@ static char		**ft_solver_helper(size_t *binary_map, t_piece *new, char **map_cha
 	t_piece		*copy_new;
 	int			pass;
 	size_t		*result;
+	int			k;
 
 	result = NULL;
 	pass = 0;
@@ -47,8 +48,13 @@ static char		**ft_solver_helper(size_t *binary_map, t_piece *new, char **map_cha
 	if (!(copy_binary_map = (size_t*)malloc(sizeof(size_t) * 13))) //copie de la map en binaire apres allocation
 		return (0);
 	if (!(copy_new = ft_lstcopy(new)))  //malloc et copie une piece copie de la piece passe en parametre
-		return (0); 
-	copy_binary_map = binary_map;
+		return (0);
+	k = 0; 
+	while (k < 13)
+	{
+		copy_binary_map[k] = binary_map[k];
+		k++;
+	}
 	while(copy_new != 0)
 	{
 		if(enter == 1)
