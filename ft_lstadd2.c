@@ -6,15 +6,12 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:23:54 by cyrmorin          #+#    #+#             */
-/*   Updated: 2017/01/17 22:06:01 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/02/01 17:58:31 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "fillit.h"
 
-
-#include <stdio.h>
 t_piece	*ft_lstadd2(t_piece *first, t_piece *nnew)
 {
 	t_piece *tmp;

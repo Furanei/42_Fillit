@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_alloc_binary_map.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/03 20:33:02 by mbriffau         ###   ########.fr       */
+/*   Created: 2017/02/06 17:37:26 by mbriffau          #+#    #+#             */
+/*   Updated: 2017/02/06 17:54:30 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *first)
+size_t	*ft_alloc_binary_map(size_t *binary_map)
 {
-	static char c = 'A';
+	size_t		*copy_binary_map;
+	int			i;
 
-	first = ft_lstadd2(first, ft_lstnew2(tab, c));
-	c++;
-	return (first);
+	i = 0;
+	if (!(copy_binary_map = (size_t*)malloc(sizeof(size_t) * 13)))
+		return (0);
+	while (i < 13)
+	{
+		copy_binary_map[i] = binary_map[i];
+		i++;
+	}
+	return (copy_binary_map);
 }

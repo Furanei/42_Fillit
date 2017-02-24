@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/03 20:33:02 by mbriffau         ###   ########.fr       */
+/*   Created: 2016/11/25 18:10:39 by cyrmorin          #+#    #+#             */
+/*   Updated: 2017/02/03 15:41:29 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <string.h>
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *first)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	static char c = 'A';
+	size_t	i;
+	char	*t;
 
-	first = ft_lstadd2(first, ft_lstnew2(tab, c));
-	c++;
-	return (first);
+	t = s;
+	i = 0;
+	while (i < n)
+	{
+		t[i] = c;
+		i++;
+	}
+	return (s);
 }

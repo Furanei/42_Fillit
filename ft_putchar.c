@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cyrmorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/03 20:33:02 by mbriffau         ###   ########.fr       */
+/*   Created: 2016/09/04 19:48:37 by cyrmorin          #+#    #+#             */
+/*   Updated: 2016/09/07 12:35:39 by cyrmorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <unistd.h>
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *first)
+void	ft_putchar(char c)
 {
-	static char c = 'A';
-
-	first = ft_lstadd2(first, ft_lstnew2(tab, c));
-	c++;
-	return (first);
+	write(1, &c, 1);
 }

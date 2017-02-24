@@ -6,13 +6,13 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/13 15:49:02 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/20 18:56:36 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/02/04 18:43:06 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t	ft_pow(size_t n, int power) /*donne la puissance POWER de N. */
+size_t	ft_pow(size_t n, int power)
 {
 	size_t		exp;
 
@@ -21,7 +21,7 @@ size_t	ft_pow(size_t n, int power) /*donne la puissance POWER de N. */
 	exp = n;
 	while (1 < power--)
 	{
-		n *=  exp;
+		n *= exp;
 	}
 	return (n);
 }

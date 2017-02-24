@@ -15,7 +15,7 @@
 t_piece		*ft_lstnew2(size_t *t, char c)
 {
 	t_piece *new;
-	int i;
+	int		i;
 
 	i = 0;
 	new = NULL;

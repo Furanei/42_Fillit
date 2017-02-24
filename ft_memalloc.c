@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cyrmorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/03 20:33:02 by mbriffau         ###   ########.fr       */
+/*   Created: 2016/11/07 18:40:11 by cyrmorin          #+#    #+#             */
+/*   Updated: 2016/11/07 18:40:13 by cyrmorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <string.h>
+#include <stdlib.h>
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *first)
+void	*ft_memalloc(size_t size)
 {
-	static char c = 'A';
+	void *buff;
 
-	first = ft_lstadd2(first, ft_lstnew2(tab, c));
-	c++;
-	return (first);
+	buff = (void *)malloc(sizeof(void*) * size);
+	if (buff)
+	{
+		ft_memset(buff, 0, size);
+		return (buff);
+	}
+	else
+		return (NULL);
 }

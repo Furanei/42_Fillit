@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_add_piece_to_list.c                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cyrmorin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/10 23:56:36 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/02/03 20:33:02 by mbriffau         ###   ########.fr       */
+/*   Created: 2016/11/25 18:51:20 by cyrmorin          #+#    #+#             */
+/*   Updated: 2016/11/25 18:51:22 by cyrmorin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include <string.h>
 
-t_piece		*ft_add_piece_to_list(size_t *tab, t_piece *first)
+size_t	ft_strlen(const char *s)
 {
-	static char c = 'A';
+	int i;
 
-	first = ft_lstadd2(first, ft_lstnew2(tab, c));
-	c++;
-	return (first);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

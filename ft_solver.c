@@ -6,107 +6,120 @@
 /*   By: mbriffau <mbriffau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/22 18:01:23 by mbriffau          #+#    #+#             */
-/*   Updated: 2017/01/27 23:50:05 by mbriffau         ###   ########.fr       */
+/*   Updated: 2017/02/06 18:26:58 by mbriffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-size_t		*ft_binary_add(size_t *area, t_piece *add)/*renvoit la somme de area et de add */
+static int			ft_cmp_piece(t_piece *piece)
+{
+	if (piece->tab[0] == piece->next->tab[0]
+			&& piece->tab[1] == piece->next->tab[1]
+			&& piece->tab[2] == piece->next->tab[2]
+			&& piece->tab[3] == piece->next->tab[3])
+		return (1);
+	return (0);
+}
+
+static size_t		*ft_b_add(size_t *b_map, t_piece *add)
 {
 	int		i;
+	size_t	*tmp;
 
+	if (add == 0)
+		return (0);
+	if (!(tmp = (size_t*)malloc(sizeof(size_t) * 13)))
+		return (0);
+	i = 0;
+	while (i < 13)
+	{
+		tmp[i] = b_map[i];
+		i++;
+	}
 	i = 0;
 	while (i < 4)
 	{
-		area[add->shift_y + i] += add->tab[i];
+		tmp[add->shift_y + i] += add->tab[i];
 		i++;
 	}
-	return (area);
+	return (tmp);
 }
 
-static char		**ft_solver_helper(size_t *binary_map, t_piece *new, char **map_char, int limit)
+static char			**ft_solver2(size_t *b_map, t_piece *new,
+	char **map_char, int lt)
 {
-	printf("ft_solver_helper\n");
-	int			enter;
-	size_t		*copy_binary_map;
-	t_piece		*copy_new;
-	int			pass;
-	size_t		*result;
-	int			k;
+	size_t		*cp_bmap;
+	t_piece		*cp_new;
+	int			i;
 
-	result = NULL;
-	pass = 0;
-	enter = 0;
-	printf("pretestnul\n");
-	if (new == NULL)
-	{
-   
-		return (map_char);
-	}    
-	printf("posttestnul\n");
-	if (!(copy_binary_map = (size_t*)malloc(sizeof(size_t) * 13))) //copie de la map en binaire apres allocation
+	i = 0;
+	if ((cp_bmap = ft_alloc_binary_map(b_map)) == 0
+		|| (cp_new = ft_lstcopy(new)) == 0)
 		return (0);
-	if (!(copy_new = ft_lstcopy(new)))  //malloc et copie une piece copie de la piece passe en parametre
-		return (0);
-	k = 0; 
-	while (k < 13)
+	while (1)
 	{
-		copy_binary_map[k] = binary_map[k];
-		k++;
-	}
-	while(copy_new != 0)
-	{
-		if(enter == 1)
+		if (i)
 		{
-			if (!(map_char = ft_solver_helper(copy_binary_map, new->next, map_char, limit)))// si le solver helper 
-																								//revoi une piece, on peut l ajoute
-			{
-				//printf("ft_add\n");
-				map_char = ft_add_char(map_char, ft_tpiece_to_char(copy_new));// ft_uitoa converti en char et ft_add ajout au tableau de char.
-				return(map_char);
-			}
-			pass = 1;
+			if ((new->next == NULL)
+				|| (ft_solver2(cp_bmap, new->next, map_char, lt) != 0))
+				return (ft_add_char(map_char, ft_tpiece_to_char(cp_new)));
+			if (ft_cmp_piece(new))
+				return (0);
+			ft_binary_tool(cp_new, 1);
 		}
-		printf("prebinarysearch\n");
-		copy_new = ft_search_binary_slot(binary_map, copy_new, pass, limit);// revoie la piece en binaire avec 
-		printf("postbinarysearch\n");																	//son placement possible ou 0 si rien trouve.
-		copy_binary_map = ft_binary_add(binary_map, copy_new);// enregistre dans copie pour 
-		printf("postbinaryadd\n");												//pouvoir retravailler avec l,original si besoin
-		enter = 1;
+		if ((cp_bmap = ft_b_add(b_map, ft_s_bslot(b_map, cp_new, lt))) == 0)
+			return (0);
+		i = 1;
 	}
 	return (0);
 }
-char	**ft_solver(t_piece *alst, int nb_piece)// je ne sais pas encore quel return mettre
+
+static int			ft_solve_it(t_piece *alst, char **map_char,
+								int *lt, size_t *b_map)
 {
-	printf("solver\n");
-	size_t	*binary_map; // la zone de depart vide pour que A puisse se replacer aussi  dans la fonction. 
-	char	**map_char;// map de char vide
+	int i;
+
+	i = 0;
+	if ((ft_solver2(b_map, alst, map_char, *lt)) != 0)
+		return (1);
+	else
+	{
+		*lt = *lt + 1;
+		i = 0;
+		while (i < (*lt - 1))
+		{
+			ft_memset(map_char[i], '.', (*lt - 1));
+			i++;
+		}
+		return (0);
+	}
+}
+
+char				**ft_solver(t_piece *alst, int nb_piece)
+{
+	size_t	*b_map;
+	char	**map_char;
 	int		i;
-	int		limit;
+	int		lt;
 	int		ok;
 
 	i = 0;
 	ok = 0;
-	limit = ft_sqrt_sup(nb_piece * 4); //calcule la limite minimum de la map
-	if(!(binary_map = malloc(sizeof(size_t) * 13)))// malloc de la zone size_t, une 
-		{//t_piece special serait elle mieux? par exemple 
-		//avec un compteur pour savoir a quelle boucle de fonction nous sommes.
+	lt = (ft_sqrt_sup(nb_piece * 4) + 1);
+	if (!(b_map = malloc(sizeof(size_t) * 14)))
 		return (0);
-		}
-	if (!(map_char = ft_double_memalloc(ft_sqrt_sup(6 * nb_piece), ft_sqrt_sup(6 * nb_piece)))) //allou la memoire pour 
-																								//la map de char, base sur la taille max possible
-		return 0;
-	while (i < 13) //mise a zero des valeurs de la map en binaire
+	if (!(map_char = ft_double_memalloc(21, 21)))
+		return (0);
+	while (i < 14)
+		b_map[i++] = 0;
+	i = 0;
+	while (i < (lt - 1))
 	{
-		binary_map[i] = 0;
+		ft_memset(map_char[i], '.', (lt - 1));
 		i++;
 	}
-	while (!(ok)) 
-	{
-		if ((map_char = ft_solver_helper(binary_map, alst, map_char, limit)) != 0)
-			ok = 1;
-		limit++;
-	}
+	while (!(ok))
+		ok = ft_solve_it(alst, map_char, &lt, b_map);
 	return (map_char);
 }

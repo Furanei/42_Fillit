@@ -10,36 +10,46 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME =			fillit.c
+NAME = fillit
 
-CC =			gcc
+CFLAGS += -Wall -Wextra -Werror
 
-FLAGS =			-Wall -Werror -Wextra
+CC = gcc
 
-HEADER =		fillit.h
+OBJS = $(SRCS:.c=.o)
 
-HEADER_DIR =	./
-
-FT_SRC_DIR =	./
-
-FT_FILES =		
-FT_COMPILED =	$(addsuffix .o,$(FT_FILES))
-
-COMPILED =		$(FT_COMPILED)
+SRCS = 	fillitmain.c  \
+			ft_add_char.c \
+			ft_add_piece_to_list.c \
+			ft_alloc_binary_map.c \
+			ft_atoui_piece.c \
+			ft_is_valid.c \
+			ft_lstadd2.c \
+			ft_lstcopy.c \
+			ft_lstnew2.c \
+			ft_post_cleaner.c \
+			ft_pow.c \
+			ft_read_and_clean.c \
+			ft_s_bslot.c \
+			ft_solver.c \
+			ft_sqrt_sup.c \
+			ft_tpiece_to_char.c \
+			ft_memset.c \
+			ft_strlen.c \
+			ft_memalloc.c \
+			ft_double_memalloc.c \
+			ft_bzero.c \
+			ft_putstr.c
 
 all: $(NAME)
 
-$(NAME): $(FT_COMPILED)
-	ar rc $(FT_LIB) $(FT_COMPILED)
-	ranlib $(FT_LIB)
-
-$(FT_COMPILED): %.o: $(FT_SRC_DIR)%.c $(HEADER)
-	$(CC) -c $(FLAGS) -I $(HEADER_DIR) $< -o $@
+$(NAME): $(OBJS)
+	$(CC) -o $(NAME) $(OBJS)
 
 clean:
-	-/bin/rm -f $(COMPILED)
+	-/bin/rm -f $(OBJS)
 
 fclean: clean
-	-/bin/rm -f $(FT_LIB)
+	-/bin/rm -f $(OBJS) $(NAME)
 
 re: fclean all
